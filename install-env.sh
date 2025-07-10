@@ -30,15 +30,13 @@ else
     echo "jq 已安裝，版本為 $(jq --version)"
 fi
 
-# 3. 下載 fabric-samples 並取得 binaries
+# 3. 下載 fabric-samples 與docker images
 if [ ! -d "fabric-samples" ]; then
     echo "下載 fabric-samples..."
-    git clone https://github.com/hyperledger/fabric-samples.git
+    curl -sSL https://raw.githubusercontent.com/hyperledger/fabric/main/scripts/install-fabric.sh | bash -s
     cd fabric-samples
     git checkout main
-    echo "執行 bootstrap.sh 下載 binaries 和 docker 映像..."
-    chmod +x scripts/bootstrap.sh
-    ./scripts/bootstrap.sh
+    
 else
     echo "fabric-samples 資料夾已存在"
 fi
